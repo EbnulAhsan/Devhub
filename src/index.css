@@ -1,0 +1,159 @@
+/* ===================================
+   DevHub — Global Styles & Tailwind
+   =================================== */
+
+@import "tailwindcss";
+
+/* ---- Custom Theme Tokens ---- */
+@theme {
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  --color-accent: #06b6d4;
+  --color-accent-light: #22d3ee;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  /* Dark theme surface colors */
+  --color-surface-dark: #0f172a;
+  --color-surface-dark-secondary: #1e293b;
+  --color-surface-dark-tertiary: #334155;
+  --color-text-dark-primary: #f1f5f9;
+  --color-text-dark-secondary: #94a3b8;
+  --color-text-dark-muted: #64748b;
+
+  /* Light theme surface colors */
+  --color-surface-light: #ffffff;
+  --color-surface-light-secondary: #f8fafc;
+  --color-surface-light-tertiary: #e2e8f0;
+  --color-text-light-primary: #0f172a;
+  --color-text-light-secondary: #475569;
+  --color-text-light-muted: #94a3b8;
+
+  /* Glass */
+  --color-glass-dark: rgba(15, 23, 42, 0.7);
+  --color-glass-light: rgba(255, 255, 255, 0.7);
+  --color-glass-border-dark: rgba(148, 163, 184, 0.15);
+  --color-glass-border-light: rgba(15, 23, 42, 0.1);
+
+  /* Gradients */
+  --color-gradient-start: #6366f1;
+  --color-gradient-mid: #8b5cf6;
+  --color-gradient-end: #06b6d4;
+
+  /* Animation */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-glow: glow 2s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ---- Base Styles ---- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* ---- Dark Mode (default) ---- */
+body[data-theme="dark"] {
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-dark-primary);
+}
+
+body[data-theme="light"] {
+  background-color: var(--color-surface-light);
+  color: var(--color-text-light-primary);
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body[data-theme="dark"]::-webkit-scrollbar-thumb {
+  background: var(--color-surface-dark-tertiary);
+  border-radius: 3px;
+}
+
+body[data-theme="light"]::-webkit-scrollbar-thumb {
+  background: var(--color-surface-light-tertiary);
+  border-radius: 3px;
+}
+
+/* ---- Keyframes ---- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(99, 102, 241, 0.3), 0 0 20px rgba(99, 102, 241, 0.1); }
+  to { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.2); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---- Utility Classes ---- */
+.glass-dark {
+  background: var(--color-glass-dark);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border-dark);
+}
+
+.glass-light {
+  background: var(--color-glass-light);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border-light);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-mid), var(--color-gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-mid), var(--color-gradient-end));
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.15), 0 0 60px rgba(99, 102, 241, 0.05);
+}
+
+/* ---- Selection ---- */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
